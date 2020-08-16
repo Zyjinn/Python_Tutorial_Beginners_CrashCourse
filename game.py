@@ -18,23 +18,32 @@ game_running = True
 monster_won = False
 player_won = False
 
+# Game continuation loop
 while game_running == True:
-    # Print Battle options menu
-    print('Please select an action')
-    print('1) Attack')
-    print('2) Heal')
+    # set values for player
+    player_info = {'name': player_name, 'attack': player_attack, 'heal': player_heal, 'health': player_health}
 
-    # Get input from user
-    player_selection = input()
-    # Check player choice
-    
-    # Attack the monster
-    if player_selection == '1': 
-        # Check if player dead
-        if(player_info['health'] <= 0):
-            monster_won = True
+    # Create monster
+    monster_info = {'name': 'Jake', 'attack': 15, 'health': 100}
 
-        else: 
+    # Battle round continuation loop
+    new_round = True
+    while new_round == True: 
+        # Print Battle options menu
+        print('Please select an action')
+        print('1) Attack')
+        print('2) Heal')
+        print('3) Exit')
+
+        # Get input from user
+        player_selection = input()
+        # Check player choice
+
+        if player_info['health'] <= 0:
+            monster_won = True 
+
+        # Attack the monster
+        if player_selection == '1' and monster_won == False: 
             # Player attacks 
             print(player_info['name'] + " attacks " + monster_info['name'])
 
@@ -44,48 +53,44 @@ while game_running == True:
             # Print how much monster has remaining
             print(monster_info['name'] + " Has " + str(monster_info['health']) + " health remaining")
 
-    # Player Heals
-    elif player_selection == '2':
-        # Check if player is dead
-        if(player_info['health'] <= 0):
-            monster_won = True
-
         # Player heals
-        else:
+        elif player_selection == '2' and monster_won == False:
             print(player_info['name'] + " Heals themself for " + str(player_info['heal'])+ 'hp')
+        elif player_selection == '3':
+            game_running = False
+            new_round = False
 
-    # Else, invalid input, error
-    else: 
-        print('input invalid')
+        # Else, invalid input, error
+        else: 
+            print('input invalid')
 
-    # Check if monster is defeated
-    if monster_info['health'] <= 0:
-        player_won = True
+        # Check if monster is defeated
+        if monster_info['health'] <= 0 and new_round == True:
+            player_won = True
 
-    else:
-        # Monster Attacks
-        print(monster_info['name'] + " attacks " + player_info['name'] + " and deals " + str(monster_info['attack']) + " damage")
+        elif new_round == True:
+            # Monster Attacks
+            print(monster_info['name'] + " attacks " + player_info['name'] + " and deals " + str(monster_info['attack']) + " damage")
 
-        # Subtract monster attack from player hp
-        player_info['health'] -= monster_info['attack']
-        print(player_info['name'] + ' has ' + str(player_info['health']) + ' health remaining')
-    
-    # check if player or monster has died 
-    if player_info['health'] <= 0:
-        monster_won = True
-    if monster_info['health'] <= 0:
-        player_won = True
+            # Subtract monster attack from player hp
+            player_info['health'] -= monster_info['attack']
+            print(player_info['name'] + ' has ' + str(player_info['health']) + ' health remaining')
+        
+        # check if player or monster has died 
+        if player_info['health'] <= 0:
+            monster_won = True
+        if monster_info['health'] <= 0:
+            player_won = True
 
-    # Check if player or monster has won
-    if player_won == True or monster_won == True:
-        if player_won == True:
-            print(player_info['name'] + " Has defeated the monster!")
-        if monster_won == True:
-            print(player_info['name'] + " Has been defeated")
-        game_running = False
+        # Check if player or monster has won
+        if player_won == True or monster_won == True:
+            if player_won == True:
+                print("\n**" + player_info['name'] + " Has defeated the monster!" "**\n")
+            if monster_won == True:
+                print("\n**" + player_info['name'] + " Has been defeated" + "**\n")
+            # End battle
+            new_round = False
 
-    # If no, keep running game
-    else: 
-        pass
-
+# Game is over
+print("Thanks for playing my game! \n ")
 
