@@ -1,4 +1,4 @@
-# Vars player
+# Default player values
 player_name = "Nick"
 player_attack = 10
 player_heal = 12
@@ -20,16 +20,27 @@ player_won = False
 
 # Game continuation loop
 while game_running == True:
+    # Get player name
+    print('------' * 12) # Print a line of dashes
+    print("Enter your name!")
+    player_name = input()
+
     # set values for player
     player_info = {'name': player_name, 'attack': player_attack, 'heal': player_heal, 'health': player_health}
 
     # Create monster
     monster_info = {'name': 'Jake', 'attack': 15, 'health': 100}
 
+    # Greet player
+    print("Hello " + player_info['name'] + "\n")
+
+    # Print player info
+    print(player_info['name'] + " has " + str(player_info['health'] + " " + str(player_info['attack'] + " attack and heals " + str(player_info['heal']) + "hp")))
+
     # Battle round continuation loop
     new_round = True
     while new_round == True: 
-        # Print Battle options menu
+        # Battle Options
         print('Please select an action')
         print('1) Attack')
         print('2) Heal')
