@@ -4,13 +4,10 @@ player_attack = 10
 player_heal = 12
 player_health = 100
 
-# Create player info (dictionary)
+# Create player info default values (dictionary)
 player_info = {'name': player_name, 'attack': player_attack, 'heal': player_heal, 'health': player_health}
 
-# Print information of player
-print(player_info)
-
-# Create monster
+# Create monster default values
 monster_info = {'name': 'Jake', 'attack': 15, 'health': 100}
 
 # Define var to keep game running
@@ -35,7 +32,7 @@ while game_running == True:
     print("Hello " + player_info['name'] + "\n")
 
     # Print player info
-    print(player_info['name'] + " has " + str(player_info['health'] + " " + str(player_info['attack'] + " attack and heals " + str(player_info['heal']) + "hp")))
+    print(str(player_info['name']) + " has " + str(player_info['health']) + "hp " + str(player_info['attack']) + " attack and heals " + str(player_info['heal']) + "hp")
 
     # Battle round continuation loop
     new_round = True
@@ -101,6 +98,7 @@ while game_running == True:
                 print("\n**" + player_info['name'] + " Has been defeated" + "**\n")
             # End battle
             new_round = False
+        
 
 # Game is over
 print("Thanks for playing my game! \n ")
