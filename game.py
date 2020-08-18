@@ -8,7 +8,7 @@ player_health = 100
 player_info = {'name': player_name, 'attack': player_attack, 'heal': player_heal, 'health': player_health}
 
 # Create monster default values
-monster_info = {'name': 'Jake', 'attack': 15, 'health': 100}
+monster_info = {'name': 'Jake', 'attack_min': 10, 'attack_max': 15, 'health': 100}
 
 # Define var to keep game running
 game_running = True
@@ -64,6 +64,9 @@ while game_running == True:
         # Player heals
         elif player_selection == '2' and monster_won == False:
             print(player_info['name'] + " Heals themself for " + str(player_info['heal'])+ 'hp')
+            player_info['health'] += player_info['heal'] # add heal value to player HP
+        
+        # Player exits the game
         elif player_selection == '3':
             game_running = False
             new_round = False
