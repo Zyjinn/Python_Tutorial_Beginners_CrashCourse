@@ -1,6 +1,10 @@
 # Import modules
 from random import randint 
 
+# Calculate the monster's attack for monster attacks
+def calculate_monster_attack():
+    return randint(monster_info['attack_min'], monster_info['attack_max'])
+
 # Default player values
 player_name = "Nick"
 player_attack = 10
@@ -84,8 +88,7 @@ while game_running == True:
 
         # Monster Attacks
         elif new_round == True:
-            monster_attack = randint((monster_info['attack_min']), (monster_info['attack_max']))
-            print(monster_attack)
+            monster_attack = calculate_monster_attack() # Get attack value
             print(monster_info['name'] + " attacks " + player_info['name'] + " and deals " + str(monster_attack) + " damage")
 
             # Subtract monster attack from player hp
