@@ -1,3 +1,6 @@
+# Import modules
+from random import randint 
+
 # Default player values
 player_name = "Nick"
 player_attack = 10
@@ -8,7 +11,7 @@ player_health = 100
 player_info = {'name': player_name, 'attack': player_attack, 'heal': player_heal, 'health': player_health}
 
 # Create monster default values
-monster_info = {'name': 'Jake', 'attack_min': 10, 'attack_max': 15, 'health': 100}
+monster_info = {'name': 'Jake', 'attack_min': 9, 'attack_max': 15, 'health': 100}
 
 # Define var to keep game running
 game_running = True
@@ -26,7 +29,7 @@ while game_running == True:
     player_info = {'name': player_name, 'attack': player_attack, 'heal': player_heal, 'health': player_health}
 
     # Create monster
-    monster_info = {'name': 'Jake', 'attack': 15, 'health': 100}
+    monster_info = {'name': 'Jake', 'attack_min': 9, 'attack_max': 15, 'health': 100}
 
     # Greet player
     print("Hello " + player_info['name'] + "\n")
@@ -79,12 +82,14 @@ while game_running == True:
         if monster_info['health'] <= 0 and new_round == True:
             player_won = True
 
+        # Monster Attacks
         elif new_round == True:
-            # Monster Attacks
-            print(monster_info['name'] + " attacks " + player_info['name'] + " and deals " + str(monster_info['attack']) + " damage")
+            monster_attack = randint((monster_info['attack_min']), (monster_info['attack_max']))
+            print(monster_attack)
+            print(monster_info['name'] + " attacks " + player_info['name'] + " and deals " + str(monster_attack) + " damage")
 
             # Subtract monster attack from player hp
-            player_info['health'] -= monster_info['attack']
+            player_info['health'] -= monster_attack
             print(player_info['name'] + ' has ' + str(player_info['health']) + ' health remaining')
         
         # check if player or monster has died 
