@@ -1,9 +1,14 @@
 # Import modules
 from random import randint 
 
-# Calculate the monster's attack for monster attacks
+# Calculate the monster's attack for when a monster attacks
+# Uses monsters attack_min and attack_max as range for randomint function
+# Returns: random value between attack_min and attack_max
 def calculate_monster_attack():
     return randint(monster_info['attack_min'], monster_info['attack_max'])
+
+def game_ends(winner_name):
+    print(f'{winner_name} won the game!')
 
 # Default player values
 player_name = "Nick"
@@ -24,6 +29,9 @@ player_won = False
 
 # Game continuation loop
 while game_running == True:
+    # Count the number of rounds
+    round_count = 0
+
     # Get player name
     print('------' * 12) # Print a line of dashes
     print("Enter your name!")
@@ -43,7 +51,10 @@ while game_running == True:
 
     # Battle round continuation loop
     new_round = True
-    while new_round == True: 
+    while new_round == True:
+        # Print round count
+        round_count += 1
+        print(f'Round: {round_count}' )
         # Battle Options
         print('Please select an action')
         print('1) Attack')
@@ -102,13 +113,16 @@ while game_running == True:
             player_won = True
 
         # Check if player or monster has won
-        if player_won == True or monster_won == True:
-            if player_won == True:
-                print("\n**" + player_info['name'] + " Has defeated the monster!" "**\n")
-            if monster_won == True:
-                print("\n**" + player_info['name'] + " Has been defeated" + "**\n")
+        if player_won == True:
+            game_ends(player_info['name'])
             # End battle
             new_round = False
+        if monster_won == True:
+            game_ends(monster_info['name'])
+            # End battle
+            new_round = False
+        
+
         
 
 # Game is over
